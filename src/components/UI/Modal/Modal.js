@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classes from './Modal.module.css';
 import Backdrop from '../Backdrop/Backdrop';
 
-// class Modal extends Component {
+// class Modal extends React.Component {
 //   shouldComponentUpdate(nextProps, nextState) {
-//     return nextProps.show !== this.props.show;
+//     return (
+//       nextProps.show !== this.props.show ||
+//       nextProps.children !== this.props.children
+//     );
 //   }
 
 //   componentWillUpdate() {
-//     console.log('Component will update');
+//     console.log('[Modal] will update');
 //   }
 //   render() {
 //     return (
@@ -34,11 +37,15 @@ import Backdrop from '../Backdrop/Backdrop';
 // }
 // export default Modal;
 
-const memoDependencyFunction = (prevProps, nextProps) =>
-  prevProps.show === nextProps.show;
+const memoDependencyFunction = (prevProps, nextProps) => {
+  const result =
+    prevProps.show === nextProps.show &&
+    nextProps.children === prevProps.children;
+  return result;
+};
 
 const Modal = props => {
-  console.log(props);
+  console.log('MODAL', props);
   return (
     <>
       <Backdrop
