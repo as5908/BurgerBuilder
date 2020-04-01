@@ -20,8 +20,12 @@ const rootReducer = combineReducers({
   order: orderReducer,
   auth: authReducer
 });
+
+// Make redux dev tools available only in dev environment
 const composeEnhancers =
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  process.env.NODE_ENV === 'development'
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : null || compose;
 
 const store = createStore(
   rootReducer,

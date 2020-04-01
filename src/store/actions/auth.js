@@ -1,6 +1,5 @@
 import * as actionTypes from './actionTypes.js';
 import axios from 'axios';
-import { act } from 'react-dom/test-utils';
 
 export const authStart = () => {
   return {
